@@ -1,0 +1,75 @@
+jConsole
+
+By Nik Coughlin
+
+A terminal/console emulator for JavaScript. Functionality is modeled on the .NET 
+Console class.
+
+Usage:
+  See the example in the demo folder, otherwise the API is:
+   
+  Initialize the console:
+    var container = document.getElementById( "container" );
+    jConsole.initializeConsole( container, 80, 25 );
+    
+    The signature for initializeConsole is:
+      function( container, width, height )      
+      
+  Then you can:
+    Clear the console:
+      jConsole.clear();
+      
+    Hide/show the cursor:
+      jConsole.hideCursor();
+      jConsole.showCursor();
+    
+    Set the cursor position:
+      jConsole.setCursor( 0, 5 );
+      
+      The signature for setCursor is:
+        function( left, top )
+    
+    Change the console size:
+      jConsole.setWindowSize( 80, 25 );
+      
+      The signature for setWindowSize is:
+        setWindowSize: function( width, height )
+        
+    Write to the console:
+      jConsole.write( "Hello World" );
+       
+      The signature for write is:
+        function( value )
+        
+    Write to the console followed by a newline:
+      jConsole.writeLine( "Hello World" );
+      
+      The signature for writeLine is:
+        function( value )
+    
+    Set the current foreground color:
+      jConsole.foregroundColor = "#888";
+      
+      You can use any CSS color value.
+    
+    Set the current background color:
+      jConsole.backgroundColor = "#888";
+      
+      You can use any CSS color value.
+
+BUGS:
+  Doesn't work in Chrome :( 
+  Works in FF, IE, Safari, Opera. 
+  
+  Not sure why. In Chrome it complains about a line in getCSSRule:
+    cssRule = styleSheet.rules[ii];
+  The message is:  
+    Uncaught TypeError: Cannot read property '0' of null
+
+TODO:
+  Add a jQuery wrapper
+  Some comments might be nice
+  Find a better name, plenty of Google hits for jConsole already
+  Fix Chrome bug
+  ???
+  Profit  
