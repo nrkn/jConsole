@@ -1,6 +1,11 @@
 var jConsole = {
   backgroundColor: '#000',
   foregroundColor: '#888',
+  colors: [ '#000', '#008', '#080', '#088', '#800', '#808', '#880', '#888', '#00f', '#0f0', '#0ff', '#f00', '#f0f', '#ff0', '#fff' ],
+  cellCache: [],
+  container: document.body,
+  windowWidth: 80,
+  windowHeight: 25,
 
   getCellId: function( left, top ) {
     return 'cell-' + left + '-' + top;
@@ -83,8 +88,7 @@ var jConsole = {
   setupCache: function() {
     var left, top;
     
-    this.changeList = [];
-    this.cellCache = [];
+    var cellCache = [];
     
     for( left = 0; left < this.windowWidth; left++ ) {
       this.cellCache[ left ] = [];
@@ -92,6 +96,8 @@ var jConsole = {
         this.cellCache[ left ][ top ] = {};
       }
     }
+    
+    return cellCache;
   },
   
   clear: function() {
@@ -224,7 +230,7 @@ var jConsole = {
     
     this.setCursorPosition( this.cursorLeft, this.cursorTop );    
   },
-  
+   
   writeLine: function( value ) {
     this.write( value );
     this.newLine();
@@ -234,7 +240,14 @@ var jConsole = {
     this.setCursorPosition( 0, this.cursorTop + 1 );
   },
   
-  colors: [ '#000', '#008', '#080', '#088', '#800', '#808', '#880', '#888', '#00f', '#0f0', '#0ff', '#f00', '#f0f', '#ff0', '#fff' ],
+  blit: function( tiles ) {
+    for( i in tiles ) {
+      var tile = tiles[ i ];
+      this.foregroundColor = tile.F;
+      this.backgroundColor = tile.B;
+      this.write( tile.C );
+    }
+  },
   
   intToColor: function( i ) {
     return this.colors[ i ];
