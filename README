@@ -56,12 +56,29 @@ Usage:
       jConsole.backgroundColor = "#888";
       
       You can use any CSS color value.
+      
+    Blit to the whole console at once:
+      jConsole.blit( tiles );
+      
+      The signature for blit is:
+        function( tiles )
+        
+      tiles is a collection of tile:
+        tile: { 
+          C: <a character>, 
+          F: <foreground color>, 
+          B: <background color>
+        }
+      
+      The collection should contain exactly height * width elements.
 
 BUGS:
-  Doesn't work in Chrome :( 
+  Doesn't work locally in Chrome :( But works when uploaded to a remote site.
   Works in FF, IE, Safari, Opera. 
   
-  Not sure why. In Chrome it complains about a line in getCSSRule:
+  Chrome has a bug with local stylesheets.
+  
+  In Chrome it complains about a line in getCSSRule:
     cssRule = styleSheet.rules[ii];
   The message is:  
     Uncaught TypeError: Cannot read property '0' of null
@@ -70,6 +87,6 @@ TODO:
   Add a jQuery wrapper
   Some comments might be nice
   Find a better name, plenty of Google hits for jConsole already
-  Fix Chrome bug
+  Work around Chrome bug
   ???
   Profit  
